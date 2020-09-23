@@ -12,6 +12,6 @@ jobs:
           echo "$GITHUB_CONTEXT"
       - name: Dump label
         env:
-          GITHUB_LABEL: ${{ event.pull_request.head.label }}
+          GITHUB_LABEL: ${{ github.event.pull_request.head.label }}
         run: |
           echo "$GITHUB_LABEL"
