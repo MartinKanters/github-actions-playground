@@ -19,8 +19,8 @@ jobs:
         shell: bash
         env:
           GITHUB_LABEL: ${{ github.event.pull_request.head.label }}
-          GITHUB_EVENT_NAME: ${{ github.event_name }}
         run: |
+          echo "event is $GITHUB_EVENT_NAME"
           if [ "$GITHUB_EVENT_NAME" == "pull_request" ]; then
             echo "$GITHUB_LABEL"
             parts=$(echo $GITHUB_LABEL | tr ":" "\n")
