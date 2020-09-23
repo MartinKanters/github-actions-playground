@@ -19,3 +19,7 @@ jobs:
           GITHUB_LABEL: ${{ github.event.pull_request.head.label }}
         run: |
           echo "$GITHUB_LABEL"
+          parts=$(echo $GITHUB_LABEL | tr ":" "\n")
+          source_repo=${GITHUB_LABEL%:*}
+          source_branch=${GITHUB_LABEL#*:}
+          echo Should take a look at branch $source_branch from $source_repo.
