@@ -15,5 +15,19 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
           echo "$GITHUB_CONTEXT"
-          echo "-----------------------------"
-          echo ${{ github.event.pull_request.title }}
+      - name: Dump label
+        shell: bash
+        env:
+          GITHUB_LABEL: ${{ github.event.pull_request.head.label }}
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
+        run: |
+          if [ "$GITHUB_EVENT_NAME" == "pull_request" ]; then
+            echo "$GITHUB_LABEL"
+            parts=$(echo $GITHUB_LABEL | tr ":" "\n")
+            source_repo=${GITHUB_LABEL%:*}
+            source_branch=${GITHUB_LABEL#*:}
+          else
+            source_repo=${GITHUB_REPOSITORY%/*}
+            source_branch=${GITHUB_REF#refs/heads/}
+          fi
+          echo Should take a look at branch $source_branch from $source_repo.
