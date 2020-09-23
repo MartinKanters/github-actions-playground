@@ -10,8 +10,8 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
           echo "$GITHUB_CONTEXT"
-      # - name: Dump label
+      - name: Dump label
       #   env:
       #     GITHUB_LABEL: ${{ event.pull_request.head.label }}
-      #   run: |
-      #     echo "$GITHUB_LABEL"
+        run: |
+          echo "$GITHUB_LABEL"
