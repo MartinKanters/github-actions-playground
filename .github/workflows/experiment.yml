@@ -1,0 +1,14 @@
+name: Experiments
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: |
+          echo "$GITHUB_CONTEXT"
+          echo "-----------------------------"
+          echo ${{ github.event.pull_request.title }}
